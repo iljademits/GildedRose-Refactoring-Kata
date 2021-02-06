@@ -27,10 +27,10 @@ namespace csharp
         [Test]
         public void SellInValueDecreasesToNegativeValue()
         {
-            IList<DefaultItem> Items = new List<DefaultItem> { new DefaultItem { Name = "foo", SellIn = 10, Quality = 10 } };
+            IList<DefaultItem> Items = new List<DefaultItem> { new DefaultItem { Name = "foo", SellIn = 0, Quality = 10 } };
             GildedRose app = new GildedRose(Items);
             app.UpdateQuality();
-            Assert.AreEqual(9, Items[0].SellIn);
+            Assert.AreEqual(-1, Items[0].SellIn);
         }
 
         [Test]

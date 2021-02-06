@@ -10,10 +10,15 @@ namespace csharp
     {
         public virtual void UpdateItemQuality()
         {
-            if(this.SellIn > 0)
+            if(this.Quality > 0)
             {
-
+                this.Quality -= 1;
             }
+            if(this.SellIn <= 0 && this.Quality > 0)
+            {
+                this.Quality -= 1;
+            }
+            this.SellIn -= 1;
         }
     }
 }
