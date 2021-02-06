@@ -10,7 +10,15 @@ namespace csharp
     {
         public override void UpdateItemQuality()
         {
-            throw new NotImplementedException();
+            if (this.Quality < 50)
+            {
+                this.Quality += 1;
+            }
+            if (this.SellIn <= 0 && this.Quality < 50)
+            {
+                this.Quality += 1;
+            }
+            this.SellIn -= 1;
         }
     }
 }

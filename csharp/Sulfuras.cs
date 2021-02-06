@@ -8,9 +8,10 @@ namespace csharp
 {
     class Sulfuras : DefaultItem
     {
+        public const int SulfurasQuality = 80;
         public override void UpdateItemQuality()
         {
-            throw new NotImplementedException();
+            this.Quality = SulfurasQuality;
         }
     }
 }

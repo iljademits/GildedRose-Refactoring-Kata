@@ -170,5 +170,23 @@ namespace csharp
             app.UpdateQuality();
             Assert.AreEqual(16, Items[0].Quality);
         }
+
+        [Test]
+        public void ConjuredItemQualityDoesNotDecreaseBelowZeroBeforeSellByDate()
+        {
+            IList<DefaultItem> Items = new List<DefaultItem> { new ConjuredItem { Name = "Philosophers Stone", SellIn = 10, Quality = 1 } };
+            GildedRose app = new GildedRose(Items);
+            app.UpdateQuality();
+            Assert.AreEqual(0, Items[0].Quality);
+        }
+
+        [Test]
+        public void ConjuredItemQualityDoesNotDecreaseBelowZeroAfterSellByDate()
+        {
+            IList<DefaultItem> Items = new List<DefaultItem> { new ConjuredItem { Name = "Philosophers Stone", SellIn = 0, Quality = 1 } };
+            GildedRose app = new GildedRose(Items);
+            app.UpdateQuality();
+            Assert.AreEqual(0, Items[0].Quality);
+        }
     }
 }

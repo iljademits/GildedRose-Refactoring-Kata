@@ -10,7 +10,27 @@ namespace csharp
     {
         public override void UpdateItemQuality()
         {
-            throw new NotImplementedException();
+            if (this.Quality > 1)
+            {
+                this.Quality -= 2;
+            }
+            else
+            {
+                this.Quality = 0;
+            }
+            if (this.SellIn <= 0)
+            {
+                if (this.Quality > 1)
+                {
+                    this.Quality -= 2;
+                }
+                else
+                {
+                    this.Quality = 0;
+                }
+
+            }
+            this.SellIn -= 1;
         }
     }
 }
