@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace csharp
 {
-    class Sulfuras : DefaultItem
+    class SulfurasItem : DefaultItem
     {
         public const int SulfurasQuality = 80;
         public override void UpdateItemQuality()

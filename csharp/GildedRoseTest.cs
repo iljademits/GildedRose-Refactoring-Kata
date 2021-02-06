@@ -111,7 +111,7 @@ namespace csharp
         [Test]
         public void SulfurasSellInValueDoesNotChange()
         {
-            IList<DefaultItem> Items = new List<DefaultItem> { new Sulfuras { Name = "Sulfuras, Hand of Ragnaros", SellIn = 10, Quality = 80 } };
+            IList<DefaultItem> Items = new List<DefaultItem> { new SulfurasItem { Name = "Sulfuras, Hand of Ragnaros", SellIn = 10, Quality = 80 } };
             GildedRose app = new GildedRose(Items);
             app.UpdateQuality();
             Assert.AreEqual(10, Items[0].SellIn);
@@ -120,7 +120,7 @@ namespace csharp
         [Test]
         public void SulfurasQualityDoesNotChange()
         {
-            IList<DefaultItem> Items = new List<DefaultItem> { new Sulfuras { Name = "Sulfuras, Hand of Ragnaros", SellIn = 10, Quality = 80 } };
+            IList<DefaultItem> Items = new List<DefaultItem> { new SulfurasItem { Name = "Sulfuras, Hand of Ragnaros", SellIn = 10, Quality = 80 } };
             GildedRose app = new GildedRose(Items);
             app.UpdateQuality();
             Assert.AreEqual(80, Items[0].Quality);
