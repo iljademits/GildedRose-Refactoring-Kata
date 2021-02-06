@@ -10,7 +10,10 @@ namespace csharp
     {
         public virtual void UpdateItemQuality()
         {
-            throw new NotImplementedException();
+            if(this.SellIn > 0)
+            {
+
+            }
         }
     }
 }
