@@ -41,6 +41,7 @@ class GildedRose {
             }
 
             if (items[i].sellIn < 0) {
+            	// This would mean Aged Brie increases twice as fast after sellIn has passed
                 if (items[i].name.equals("Aged Brie")) {
                     if (items[i].quality < 50) {
                         items[i].quality = items[i].quality + 1;
