@@ -12,7 +12,7 @@ import com.gildedrose.qualityupdater.NormalItemQualityUpdater;
 import com.gildedrose.qualityupdater.QualityUpdater;
 
 public class QualityUpdaterFactory {
-	
+	// These lists could be in a service...
 	private static List<String> legendaryItems = new ArrayList<>(Arrays.asList("Sulfuras, Hand of Ragnaros"));
 	private static List<String> improvingItems = new ArrayList<>(Arrays.asList("Aged Brie"));
 	private static List<String> conjuredItems = new ArrayList<>(Arrays.asList("Conjured Mana Cake"));
@@ -37,10 +37,10 @@ public class QualityUpdaterFactory {
 		
 		return new NormalItemQualityUpdater();
 	}
-	
+	// This method should also be in that service
 	public static List<String> getLegendaryItems () {
 		return legendaryItems;
 	}
 	
-	// Could add methods to add items to specific lists
+	// Could add methods to aforementioned service
 }
