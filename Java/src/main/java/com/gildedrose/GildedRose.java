@@ -2,58 +2,33 @@ package com.gildedrose;
 
 class GildedRose {
     Item[] items;
+    
+    private final static int QUALITY_UPPER_LIMIT = 50;
+    private final static int QUALITY_LOWER_LIMIT = 0;
 
     public GildedRose(Item[] items) {
         this.items = items;
     }
 
     public void updateQuality() {
-        for (int i = 0; i < items.length; i++) {
+        for (Item item : items) {
         	
-            if (!items[i].name.equals("Sulfuras, Hand of Ragnaros")) {
-            	items[i] = decreaseItemSellIn(items[i]);
-            }
+        	if (item.name.equals("Sulfuras, Hand of Ragnaros")) {
+        		continue;
+        	}
+        	
+        	item = decreaseItemSellIn(item);
             
-            if (items[i].name.equals("Aged Brie")) {
-            	items[i] = updateAgedBrieQuality(items[i]);
-            } else if (items[i].name.equals("Backstage passes to a TAFKAL80ETC concert")) {
-            	items[i] = updateBackstagePassQuality(items[i]);
-            } else if (items[i].name.equals("Sulfuras, Hand of Ragnaros")) {
-            	// DO NOTHING
-            } else if (items[i].name.equals("Conjured Mana Cake")) {
-            	items[i] = updateConjuredItemQuality(items[i]);
+            if (item.name.equals("Aged Brie")) {
+            	item = updateAgedBrieQuality(item);
+            } else if (item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
+            	item = updateBackstagePassQuality(item);
+            } else if (item.name.equals("Conjured Mana Cake")) {
+            	item = updateConjuredItemQuality(item);
             } else {
-            	items[i] = updateNormalItemQuality(items[i]);
+            	item = updateNormalItemQuality(item);
             }
         }
-    }
-    
-    private Item decreaseItemSellIn(Item item) {
-    	item.sellIn -= 1;
-    	return item;
-    }
-    
-    private Item decreaseItemQualityBy(int amount, Item item) {
-    	if (item.quality > amount) {
-    		item.quality -= amount;
-        	return item;
-    	}
-    	item.quality = 0;
-    	return item;
-    }
-    
-    private Item increaseItemQualityBy(int amount, Item item) {
-    	if (item.quality + amount < 50) {
-    		item.quality += amount;
-        	return item;
-    	}
-    	item.quality = 50;
-    	return item;
-    }
-    
-    private Item setItemQualityToZero(Item item) {
-    	item.quality = 0;
-    	return item;
     }
     
     private Item updateAgedBrieQuality(Item brie) {
@@ -80,17 +55,48 @@ class GildedRose {
         return increaseItemQualityBy(1, backstagePass);
     }
     
-    private Item updateConjuredItemQuality(Item item) {
-    	if (item.sellIn < 0) {
-    		return decreaseItemQualityBy(4, item);
+    private Item updateConjuredItemQuality(Item conjuredItem) {
+    	if (conjuredItem.sellIn < 0) {
+    		return decreaseItemQualityBy(4, conjuredItem);
     	}
-    	return decreaseItemQualityBy(2, item);
+    	return decreaseItemQualityBy(2, conjuredItem);
     }
     
-    private Item updateNormalItemQuality(Item item) {
-    	if (item.sellIn < 0) {
-    		return decreaseItemQualityBy(2, item);
+    private Item updateNormalItemQuality(Item normalItem) {
+    	if (normalItem.sellIn < 0) {
+    		return decreaseItemQualityBy(2, normalItem);
     	}
-    	return decreaseItemQualityBy(1, item);
+    	return decreaseItemQualityBy(1, normalItem);
     }
+    
+    
+    private Item decreaseItemSellIn(Item item) {
+    	item.sellIn -= 1;
+    	return item;
+    }
+    
+    private Item decreaseItemQualityBy(int qualityDecrement, Item item) {
+    	if (item.quality - qualityDecrement > QUALITY_LOWER_LIMIT) {
+    		item.quality -= qualityDecrement;
+        	return item;
+    	}
+    	item.quality = QUALITY_LOWER_LIMIT;
+    	return item;
+    }
+    
+    private Item increaseItemQualityBy(int qualityIncrement, Item item) {
+    	if (item.quality + qualityIncrement < QUALITY_UPPER_LIMIT) {
+    		item.quality += qualityIncrement;
+        	return item;
+    	}
+    	item.quality = QUALITY_UPPER_LIMIT;
+    	return item;
+    }
+    
+    private Item setItemQualityToZero(Item item) {
+    	item.quality = 0;
+    	return item;
+    }
+    
+
 }
