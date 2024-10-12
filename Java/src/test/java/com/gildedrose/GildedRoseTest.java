@@ -41,6 +41,15 @@ class GildedRoseTest {
         assertEquals(9, items[0].sellIn);  // sellIn should decrease by 1
         assertEquals(31, items[0].quality); // Aged Brie increases in quality
     }
+    
+    @Test
+    public void testAgedBrieIncreasesInQualityTwiceAsFastAfterSellIn() {
+        Item[] items = new Item[] { new Item("Aged Brie", 0, 30) };
+        GildedRose app = new GildedRose(items);
+        app.updateQuality();
+        assertEquals(-1, items[0].sellIn);  // sellIn should decrease by 1
+        assertEquals(32, items[0].quality); // Aged Brie increases in quality by 2
+    }
 
     @Test
     public void testAgedBrieQualityDoesNotExceed50() {
@@ -48,6 +57,15 @@ class GildedRoseTest {
         GildedRose app = new GildedRose(items);
         app.updateQuality();
         assertEquals(9, items[0].sellIn);
+        assertEquals(50, items[0].quality); // Quality should not exceed 50
+    }
+    
+    @Test
+    public void testAgedBrieQualityDoesNotExceed50AfterSellInPassed() {
+        Item[] items = new Item[] { new Item("Aged Brie", 0, 50) };
+        GildedRose app = new GildedRose(items);
+        app.updateQuality();
+        assertEquals(-1, items[0].sellIn);
         assertEquals(50, items[0].quality); // Quality should not exceed 50
     }
 
