@@ -20,6 +20,8 @@ class GildedRose {
             	items[i] = updateBackstagePassQuality(items[i]);
             } else if (items[i].name.equals("Sulfuras, Hand of Ragnaros")) {
             	// DO NOTHING
+            } else if (items[i].name.equals("Conjured Mana Cake")) {
+            	items[i] = updateConjuredItemQuality(items[i]);
             } else {
             	items[i] = updateNormalItemQuality(items[i]);
             }
@@ -76,6 +78,13 @@ class GildedRose {
         }
         
         return increaseItemQualityBy(1, backstagePass);
+    }
+    
+    private Item updateConjuredItemQuality(Item item) {
+    	if (item.sellIn < 0) {
+    		return decreaseItemQualityBy(4, item);
+    	}
+    	return decreaseItemQualityBy(2, item);
     }
     
     private Item updateNormalItemQuality(Item item) {

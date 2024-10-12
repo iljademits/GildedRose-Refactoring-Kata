@@ -52,7 +52,7 @@ class GildedRoseTest {
     }
     
     @Test
-    public void testAgedBrieIncreasesInQualityTwiceAsFastAfterSellIn() {
+    public void testAgedBrieIncreasesInQualityBy2AfterSellIn() {
         Item[] items = new Item[] { new Item("Aged Brie", 0, 30) };
         GildedRose app = new GildedRose(items);
         app.updateQuality();
@@ -133,7 +133,7 @@ class GildedRoseTest {
     }
 
     @Test
-    public void testConjuredItemsDegradeTwiceAsFast() {
+    public void testConjuredItemsDegradeBy2() {
         Item[] items = new Item[] { new Item("Conjured Mana Cake", 10, 20) };
         GildedRose app = new GildedRose(items);
         app.updateQuality();
@@ -142,12 +142,21 @@ class GildedRoseTest {
     }
     
     @Test
+    public void testConjuredItemsDegradeBy4AfterSellIn() {
+        Item[] items = new Item[] { new Item("Conjured Mana Cake", 0, 20) };
+        GildedRose app = new GildedRose(items);
+        app.updateQuality();
+        assertEquals(-1, items[0].sellIn);
+        assertEquals(16, items[0].quality); // Conjured items degrade twice as fast
+    }
+    
+    @Test
     public void testConjuredItemsNeverNegative() {
         Item[] items = new Item[] { new Item("Conjured Mana Cake", 10, 1) };
         GildedRose app = new GildedRose(items);
         app.updateQuality();
         assertEquals(9, items[0].sellIn);
-        assertEquals(0, items[0].quality); // Conjured items degrade twice as fast
+        assertEquals(0, items[0].quality); // quality should not go below 0
     }
     
     @Test
@@ -155,8 +164,8 @@ class GildedRoseTest {
         Item[] items = new Item[] { new Item("Conjured Mana Cake", 0, 1) };
         GildedRose app = new GildedRose(items);
         app.updateQuality();
-        assertEquals(9, items[0].sellIn);
-        assertEquals(0, items[0].quality); // Conjured items degrade twice as fast
+        assertEquals(-1, items[0].sellIn);
+        assertEquals(0, items[0].quality); // quality should not go below 0
     }
 
 }
