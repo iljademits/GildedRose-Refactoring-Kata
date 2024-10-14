@@ -13,11 +13,9 @@ class GildedRose {
     public void updateQuality() {
         for (Item item : items) {
 
-        	if (Inventory.isLegendary(item)) {
-        		continue;
+        	if (!Inventory.isLegendary(item)) {
+            	item = decreaseItemSellIn(item);
         	}
-        	
-        	item = decreaseItemSellIn(item);
         	
         	QualityUpdater updater = QualityUpdaterFactory.fetchQualityUpdater(item);
         	
