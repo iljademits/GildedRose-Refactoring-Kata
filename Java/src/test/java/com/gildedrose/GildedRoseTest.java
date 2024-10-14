@@ -218,5 +218,79 @@ class GildedRoseTest {
         // Compare the actual output to the expected output
         assertEquals(expectedOutput, actualOutput);
     }
+    
+    @Test
+    public void testTextTestFixtureOutput3Days() {
+        // Redirect console output to a ByteArrayOutputStream
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        PrintStream originalOut = System.out;
+        System.setOut(new PrintStream(outputStream));
+
+        // Run the TexttestFixture main method
+        String[] args = {"3"}; // days=3
+        TexttestFixture.main(args);
+
+        // Expected output after 3 days
+        String expectedOutput =
+        	    "OMGHAI!\n" +
+        	    "-------- day 0 --------\n" +
+        	    "name, sellIn, quality\n" +
+        	    "+5 Dexterity Vest, 10, 20\n" +
+        	    "Aged Brie, 2, 0\n" +
+        	    "Elixir of the Mongoose, 5, 7\n" +
+        	    "Sulfuras, Hand of Ragnaros, 0, 80\n" +
+        	    "Sulfuras, Hand of Ragnaros, -1, 80\n" +
+        	    "Backstage passes to a TAFKAL80ETC concert, 15, 20\n" +
+        	    "Backstage passes to a TAFKAL80ETC concert, 10, 49\n" +
+        	    "Backstage passes to a TAFKAL80ETC concert, 5, 49\n" +
+        	    "Conjured Mana Cake, 3, 6\n" +
+        	    "\n" +
+        	    "-------- day 1 --------\n" +
+        	    "name, sellIn, quality\n" +
+        	    "+5 Dexterity Vest, 9, 19\n" +
+        	    "Aged Brie, 1, 1\n" +
+        	    "Elixir of the Mongoose, 4, 6\n" +
+        	    "Sulfuras, Hand of Ragnaros, 0, 80\n" +
+        	    "Sulfuras, Hand of Ragnaros, -1, 80\n" +
+        	    "Backstage passes to a TAFKAL80ETC concert, 14, 21\n" +
+        	    "Backstage passes to a TAFKAL80ETC concert, 9, 50\n" +
+        	    "Backstage passes to a TAFKAL80ETC concert, 4, 50\n" +
+        	    "Conjured Mana Cake, 2, 4\n" +
+        	    "\n" +
+        	    "-------- day 2 --------\n" +
+        	    "name, sellIn, quality\n" +
+        	    "+5 Dexterity Vest, 8, 18\n" +
+        	    "Aged Brie, 0, 2\n" +
+        	    "Elixir of the Mongoose, 3, 5\n" +
+        	    "Sulfuras, Hand of Ragnaros, 0, 80\n" +
+        	    "Sulfuras, Hand of Ragnaros, -1, 80\n" +
+        	    "Backstage passes to a TAFKAL80ETC concert, 13, 22\n" +
+        	    "Backstage passes to a TAFKAL80ETC concert, 8, 50\n" +
+        	    "Backstage passes to a TAFKAL80ETC concert, 3, 50\n" +
+        	    "Conjured Mana Cake, 1, 2\n" +
+        	    "\n" +
+        	    "-------- day 3 --------\n" +
+        	    "name, sellIn, quality\n" +
+        	    "+5 Dexterity Vest, 7, 17\n" +
+        	    "Aged Brie, -1, 4\n" +
+        	    "Elixir of the Mongoose, 2, 4\n" +
+        	    "Sulfuras, Hand of Ragnaros, 0, 80\n" +
+        	    "Sulfuras, Hand of Ragnaros, -1, 80\n" +
+        	    "Backstage passes to a TAFKAL80ETC concert, 12, 23\n" +
+        	    "Backstage passes to a TAFKAL80ETC concert, 7, 50\n" +
+        	    "Backstage passes to a TAFKAL80ETC concert, 2, 50\n" +
+        	    "Conjured Mana Cake, 0, 0\n" +
+        	    "\n";
+
+
+        // Get the actual output from the ByteArrayOutputStream
+        String actualOutput = outputStream.toString();
+
+        // Restore the original System.out
+        System.setOut(originalOut);
+
+        // Compare the actual output to the expected output
+        assertEquals(expectedOutput, actualOutput);
+    }
 
 }
