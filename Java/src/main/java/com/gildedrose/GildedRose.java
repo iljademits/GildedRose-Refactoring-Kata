@@ -1,6 +1,7 @@
 package com.gildedrose;
 
 import com.gildedrose.qualityupdater.QualityUpdater;
+import com.gildedrose.service.Inventory;
 
 class GildedRose {
     Item[] items;
@@ -12,7 +13,7 @@ class GildedRose {
     public void updateQuality() {
         for (Item item : items) {
 
-        	if (QualityUpdaterFactory.getLegendaryItems().contains(item.name)) {
+        	if (Inventory.isLegendary(item)) {
         		continue;
         	}
         	
